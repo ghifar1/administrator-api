@@ -7,6 +7,28 @@ use App\Models\Wilayah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
+use OpenApi\Annotations as OA;
+
+
+/**
+ * @OA\OpenApi(
+ *  @OA\Info(
+ *      title="Administration API",
+ *      version="1.0.0",
+ *      description="API documentation for Administration",
+ *      @OA\Contact(
+ *          email="contact@ghifar.dev"
+ *      )
+ *  ),
+ *  @OA\Server(
+ *      description="Returns App API",
+ *      url="http://administration-api.org/api/"
+ *  ),
+ *  @OA\PathItem(
+ *      path="/"
+ *  )
+ * )
+ */
 
 class WilayahAdministrasiController extends Controller
 {
@@ -28,6 +50,15 @@ class WilayahAdministrasiController extends Controller
         return request()->ip(); // it will return the server IP if the client IP is not found using this method.
     }
 
+    /**
+     * @OA\Get (
+     *     path="/wilayah/provinsi",
+     *     tags={"Provinsi"},
+     *     summary="Get Provinsi",
+     *     operationId="getProvince",
+     *     @OA\Response(response="default", description="successful operation")
+     * )
+     */
     public function getProvinsi(){
         $startTime = microtime(true);
         $redis = Redis::connection();
@@ -51,6 +82,24 @@ class WilayahAdministrasiController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Get (
+     *     path="/wilayah/provinsi/{parent_id}/kota_kabupaten",
+     *     tags={"Kota/Kabupaten"},
+     *     summary="Get Kota/Kabupaten from provinsi",
+     *     operationId="getKotaKabupatenFromProvince",
+     *     @OA\Parameter(
+     *         name="parent_id",
+     *         in="path",
+     *         description="get this parent_id from id province",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(response="default", description="successful operation")
+     * )
+     */
     public function getKotaKabupatenFromProvinsi(int $parent) {
         $startTime = microtime(true);
         $redis = Redis::connection();
@@ -74,6 +123,15 @@ class WilayahAdministrasiController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Get (
+     *     path="/wilayah/kota_kabupaten",
+     *     tags={"Kota/Kabupaten"},
+     *     summary="Get Kota/Kabupaten",
+     *     operationId="getKotaKabupaten",
+     *     @OA\Response(response="default", description="successful operation")
+     * )
+     */
     public function getKotaKabupaten(){
         $startTime = microtime(true);
         $redis = Redis::connection();
@@ -97,6 +155,24 @@ class WilayahAdministrasiController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Get (
+     *     path="/wilayah/kota_kabupaten/{parent_id}/kecamatan",
+     *     tags={"Kecamatan"},
+     *     summary="Get Kecamatan from kota/kabupaten",
+     *     operationId="getKecamatanFromKotaKabupaten",
+     *     @OA\Parameter(
+     *         name="parent_id",
+     *         in="path",
+     *         description="get this parent_id from id kota_kabupaten",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(response="default", description="successful operation")
+     * )
+     */
     public function getKecamatanFromKotaKabupaten(int $parent) {
         $startTime = microtime(true);
         $redis = Redis::connection();
@@ -120,6 +196,15 @@ class WilayahAdministrasiController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Get (
+     *     path="/wilayah/kecamatan",
+     *     tags={"Kecamatan"},
+     *     summary="Get Kecamatan",
+     *     operationId="getKecamatan",
+     *     @OA\Response(response="default", description="successful operation")
+     * )
+     */
     public function getKecamatan(){
         $startTime = microtime(true);
         $redis = Redis::connection();
@@ -143,6 +228,24 @@ class WilayahAdministrasiController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Get (
+     *     path="/wilayah/kecamatan/{parent_id}/kelurahan",
+     *     tags={"Kelurahan"},
+     *     summary="Get kelurahan from kecamatan",
+     *     operationId="getKelurahanFromKecamatan",
+     *     @OA\Parameter(
+     *         name="parent_id",
+     *         in="path",
+     *         description="get this parent_id from id kecamatan",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(response="default", description="successful operation")
+     * )
+     */
     public function getKelurahanFromKotaKabupaten(int $parent) {
         $startTime = microtime(true);
         $redis = Redis::connection();
@@ -166,6 +269,15 @@ class WilayahAdministrasiController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Get (
+     *     path="/wilayah/kelurahan",
+     *     tags={"Kelurahan"},
+     *     summary="Get Kelurahan",
+     *     operationId="getKelurahan",
+     *     @OA\Response(response="default", description="successful operation")
+     * )
+     */
     public function getKelurahan(){
         $startTime = microtime(true);
         $redis = Redis::connection();

@@ -1,0 +1,151 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Administration API",
+        "description": "API documentation for Administration",
+        "contact": {
+            "email": "contact@ghifar.dev"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://administration-api.org/api/",
+            "description": "Returns App API"
+        }
+    ],
+    "paths": {
+        "/": {},
+        "/wilayah/provinsi": {
+            "get": {
+                "tags": [
+                    "Provinsi"
+                ],
+                "summary": "Get Provinsi",
+                "operationId": "getProvince",
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/wilayah/provinsi/{parent_id}/kota_kabupaten": {
+            "get": {
+                "tags": [
+                    "Kota/Kabupaten"
+                ],
+                "summary": "Get Kota/Kabupaten from provinsi",
+                "operationId": "getKotaKabupatenFromProvince",
+                "parameters": [
+                    {
+                        "name": "parent_id",
+                        "in": "path",
+                        "description": "get this parent_id from id province",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/wilayah/kota_kabupaten": {
+            "get": {
+                "tags": [
+                    "Kota/Kabupaten"
+                ],
+                "summary": "Get Kota/Kabupaten",
+                "operationId": "getKotaKabupaten",
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/wilayah/kota_kabupaten/{parent_id}/kecamatan": {
+            "get": {
+                "tags": [
+                    "Kecamatan"
+                ],
+                "summary": "Get Kecamatan from kota/kabupaten",
+                "operationId": "getKecamatanFromKotaKabupaten",
+                "parameters": [
+                    {
+                        "name": "parent_id",
+                        "in": "path",
+                        "description": "get this parent_id from id kota_kabupaten",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/wilayah/kecamatan": {
+            "get": {
+                "tags": [
+                    "Kecamatan"
+                ],
+                "summary": "Get Kecamatan",
+                "operationId": "getKecamatan",
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/wilayah/kecamatan/{parent_id}/kelurahan": {
+            "get": {
+                "tags": [
+                    "Kelurahan"
+                ],
+                "summary": "Get kelurahan from kecamatan",
+                "operationId": "getKelurahanFromKecamatan",
+                "parameters": [
+                    {
+                        "name": "parent_id",
+                        "in": "path",
+                        "description": "get this parent_id from id kecamatan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/wilayah/kelurahan": {
+            "get": {
+                "tags": [
+                    "Kelurahan"
+                ],
+                "summary": "Get Kelurahan",
+                "operationId": "getKelurahan",
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    }
+}
